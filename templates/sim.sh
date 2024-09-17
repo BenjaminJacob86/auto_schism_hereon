@@ -26,9 +26,26 @@ module load singularity
  #     ${CONTAINER_ARGS_POST}
 	  
 # hard code test	  
-mpirun -np 8 singularity run --bind /gpfs/scratch/nct_306/nct01095/BSideal:/rundir,/gpfs/scratch/nct_306/nct01095/BSideal/input:/input,/gpfs/scratch/nct_306/nct01095/BSideal/outputs:/output schism_arg.sif 4
-	  
+#mpirun -np 8 singularity run --bind /gpfs/scratch/nct_306/nct01095/BSideal:/rundir,/gpfs/scratch/nct_306/nct01095/BSideal/input:/input,/gpfs/scratch/nct_306/nct01095/BSideal/outputs:/output schism_arg.sif 4
 
-echo "OK!"
+#alternative call
 
+## Set container location and paths
+#CONTAINER_LOCATION="/gpfs/scratch/nct_306/schism_arg.sif"
+#CONTAINER_ARGS_PRE="--bind /gpfs/scratch/nct_306/nct01095/BSideal:/rundir,/gpfs/scratch/nct_306/nct01095/BSideal/input:/input,/gpfs/scratch/nct_306/nct01095/BSideal/outputs:/output"
+#CONTAINER_ARGS_POST="/SCHISM/GBconfig/bin/pschism_PREC_EVAP_TVD-SB 4"
+#
+#
+## Run the job
+#mpirun -np 8 singularity -pwd /rundir exec ${CONTAINER_ARGS_PRE} ${CONTAINER_LOCATION} ${CONTAINER_ARGS_POST}	  
+#
+#echo "OK!"
+#
 
+# Set container location and paths
+CONTAINER_LOCATION="/gpfs/scratch/nct_306/schism_arg.sif"
+CONTAINER_ARGS_PRE="--bind /gpfs/scratch/nct_306/nct01095/BSideal:/rundir,/gpfs/scratch/nct_306/nct01095/BSideal/input:/input,/gpfs/scratch/nct_306/nct01095/BSideal/outputs:/output"
+CONTAINER_ARGS_POST="/SCHISM/GBconfig/bin/pschism_PREC_EVAP_TVD-SB 4"
+
+# Run the job (add --pwd to ensure /rundir is set as the working directory)
+mpirun -np 8 singularity exec --pwd /rundir ${CONTAINER_ARGS_PRE} ${CONTAINER_LOCATION} ${CONTAINER_ARGS_POST}
