@@ -14,7 +14,7 @@ $ autosubmit expid \
     --HPC MN5 \
     --description "Benjamin Schism test" \
     --minimal_configuration \
-    --git_repo https://earth.bsc.es/gitlab/bdepaula/auto-schism2.git \
+    --git_repo https://github.com/BenjaminJacob86/auto_schism_hereon.git \  
     --git_branch main \
     --git_as_conf "conf/"
 Autosubmit is running with 4.1.9
