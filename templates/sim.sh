@@ -9,7 +9,7 @@ CONTAINER_ARGS_PRE="--bind /gpfs/scratch/nct_306/nct01095/BSideal:/rundir,/gpfs/
 CONTAINER_ARGS_POST="4"   #this is the number of scribes
 
 mpirun -np 8 singularity run \
-  $"{CONTAINER_ARGS_PRE}"  \
+  "${CONTAINER_ARGS_PRE}"  \
   "${CONTAINER_LOCATION}" \
       ${CONTAINER_ARGS_POST}
 
